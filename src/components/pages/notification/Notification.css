@@ -1,0 +1,12 @@
+/* Scrollable Table Styles */
+.table-responsive-md {
+    max-height: 400px; /* Set a maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+}
+
+/* Optional: Add a border around the scrollable area */
+.table-responsive-md {
+    border: 1px solid #dee2e6; /* Border color */
+    border-radius: 0.375rem; /* Rounded corners */
+}
