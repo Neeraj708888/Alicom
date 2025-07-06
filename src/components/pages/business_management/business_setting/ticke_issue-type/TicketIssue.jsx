@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from 'react-router-dom';
  
 const TicketIssue = () => {
   const [editData, setEditData] = useState({ id: "", name: "" });
@@ -52,7 +53,6 @@ const TicketIssue = () => {
   };
  
   return (
-    <div className="app-main-inner">
       <div className="container-fluid">
         <div className="d-flex align-items-center flex-wrap gap-3 justify-content-between px-3">
           <h4>Ticket Issue Types</h4>
@@ -101,12 +101,12 @@ const TicketIssue = () => {
                             >
                               <i className="fa-solid fa-pen"></i>
                             </button>
-                            <a
-                              href={`https://demo.alicom.app/admin/ticket-issue-type/${item.id}/delete`}
+                            <Link
+                             to='#'
                               className="btn btn-outline-danger btn-sm deleteConfirmAlert circleIcon"
                             >
                               <i className="fa-solid fa-trash"></i>
-                            </a>
+                            </Link>
                           </div>
                         </td>
                       </tr>
@@ -211,7 +211,6 @@ const TicketIssue = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
  

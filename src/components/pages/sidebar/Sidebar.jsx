@@ -1,10 +1,12 @@
 // src/Sidebar.jsx
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Logout from '../header/Logout';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
    const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -22,6 +24,17 @@ const Sidebar = () => {
       document.exitFullscreen();
     }
   };
+
+  // Sidebar Logout Handle
+  const handleLogout = () => {
+        console.log("User logged out");
+        navigate('/admin/logout');
+    };
+
+    const handleCancel = () => {
+        console.log("Logout canceled");
+        setShowLogoutModal(false);
+    };
 
   return (
     <div className= 'app-sidebar'>
@@ -296,7 +309,7 @@ const Sidebar = () => {
               {activeMenu === 'thirdPartyConfigMenu' && (
                 <div className="dropdownMenuCollapse">
                   <div className="listBar">
-                    <NavLink to="/admin/payment-gateway" className="subMenu">Payment Gateway</NavLink>
+                    <NavLink to="admin/Business/payment-gateway" className="subMenu">Payment Gateway</NavLink>
                     <NavLink to="/admin/Business/sms-gateways" className="subMenu">SMS Gateway</NavLink>
                     <NavLink to="/admin/Business/pusher" className="subMenu">Pusher Setup</NavLink>
                     <NavLink to="/admin/Business/mail" className="subMenu">Mail Config</NavLink>
@@ -385,10 +398,19 @@ const Sidebar = () => {
             <i className="fa-solid fa-user"></i>
           </NavLink>
           <button className="fullbtn hite-icon logout">
-            <i className="fa-solid fa-power-off"></i>
+            <i className="fa-solid fa-power-off" onClick={
+              (e) => {
+                e.preventDefault();
+                setShowLogoutModal(true);
+              }
+            }></i>
           </button>
         </div>
       </div>
+
+      { showLogoutModal && (
+        <Logout onLogout={handleLogout} onCancel={handleCancel}/>
+      )}
     </div>
   );
 };

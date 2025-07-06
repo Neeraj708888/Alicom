@@ -101,7 +101,6 @@ const Coupon = () => {
     return (
            
                 <div className="container-fluid">
-
                     <div className="d-flex align-items-center flex-wrap gap-3 justify-content-between mb-3">
                     <h2 className="mb-5 text-3xl">Coupons</h2>
 

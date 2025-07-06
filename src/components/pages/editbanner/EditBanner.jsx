@@ -2,7 +2,6 @@ import React from 'react';
 
 const EditBanner = () => {
   return (
-      <div className="app-main-inner">
         <div className="container-fluid">
           <div className="page-title">
             <div className="d-flex gap-2 align-items-center">
@@ -85,7 +84,6 @@ const EditBanner = () => {
             </div>
           </form>
         </div>
-      </div>
   );
 };
 

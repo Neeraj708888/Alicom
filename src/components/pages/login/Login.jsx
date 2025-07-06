@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '/src/assets/images/logo.png';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,38 +16,36 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Static login validation
+    // Static login check
     if (email === 'root@alicom.com' && password === 'secret') {
-      navigate('/'); // Redirect to dashboard
+      localStorage.setItem('token', 'STATIC_AUTH_TOKEN'); // static token
+      toast.success('Login Successfully !');
+      navigate('/'); // redirect to dashboard
     } else {
-      alert('Invalid credentials');
+      toast.error('Invalid credentials !');
     }
+  };
+
+  const loginAdmin = () => {
+    setEmail('root@alicom.com');
+    setPassword('secret');
   };
 
   return (
     <section className="login-section">
       <div className="thumbnail">
-        <img
-          src="https://demo.alicom.app/assets/images/login.png"
-          alt="thumbnail"
-          width="100%"
-        />
+        <img src={logo} alt="thumbnail" width="100%" height="100%" />
       </div>
 
       <div className="card loginCard">
         <div className="card-body">
           <div className="text-center mt-4">
-            <img
-              src="https://demo.alicom.app/storage/logo/Xjd351SVOEDXdwp70TA5mysABikxeUwFMVW9isbF.svg"
-              alt="Logo"
-              height="90"
-              style={{ maxWidth: '100%' }}
-            />
+            <img src={logo} alt="Logo" height="90" style={{ maxWidth: '100%' }} />
           </div>
 
           <div className="page-content text-center mb-4">
             <p className="pagePera my-3">
-              Welcome to <span className="fw-bold text-primary-color">Alicom</span>
+              Welcome to <span className="fw-bold btn-outline-info">Admin</span>
             </p>
             <h2 className="pageTitle">Login To Admin</h2>
           </div>
@@ -53,18 +53,16 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="email">Enter Address</label>
-              <div className="position-relative passwordInput">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="form-control"
-                  placeholder="Enter Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="form-control"
+                placeholder="Enter Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
 
             <div className="mb-4">
@@ -93,15 +91,15 @@ const Login = () => {
               Login
             </button>
 
-            <div className="credentials-section">
+            <div className="credentials-section mt-3">
               <div className="item">
                 <div className="header">Admin Credentials</div>
-                <div className="content">
+                <div className="content d-flex justify-content-between align-items-center">
                   <div className="credentials">
                     <span>Email: root@alicom.com</span>
                     <span>Password: secret</span>
                   </div>
-                  <div className="copyBtn">
+                  <div className="copyBtn" onClick={loginAdmin} style={{ cursor: 'pointer' }}>
                     <i className="fa-regular fa-copy"></i>
                   </div>
                 </div>

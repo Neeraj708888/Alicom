@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const EditBoucher = () => {
   return (
-   
       <div className="container-fluid">
         <div className="page-title">
           <div className="d-flex gap-2 align-items-center text-muted">

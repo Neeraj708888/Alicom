@@ -1,111 +1,104 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import banner from '/src/assets/images/banner1.png'
 
-const Banner = () => {
-    const [bannerStates, setBannerStates] = useState({
-        30: true,
-        31: true
-    });
+const BannerList = () => {
+  const banners = [
+    {
+      id: 6,
+      title: 'B1',
+      image: 'https://demo.alicom.app/storage/banners/XaZDa8XOpdPzVNkqe1fjsS9hAYz2ZlaI9AzhyDNf.jpg',
+    },
+    {
+      id: 7,
+      title: 'B2',
+      image: 'https://demo.alicom.app/storage/banners/rq3kaoE9viBAirZmsGH8xejbET44aq6eYxf8tT4y.jpg',
+    },
+    {
+      id: 8,
+      title: 'B3',
+      image: 'https://demo.alicom.app/storage/banners/8IwIWy0Fq6NuOShbihwnmry9iQtfG8FKsN0HGIXE.jpg',
+    },
+    {
+      id: 9,
+      title: 'B4',
+      image: 'https://demo.alicom.app/storage/banners/HhhWQyJsDNqFUyB980y0nFIDuISGhlKZXCvvCNbX.jpg',
+    },
+    {
+      id: 10,
+      title: 'B5',
+      image: 'https://demo.alicom.app/storage/banners/LUBn4r5AUi7w1OtqylGq61cOC6gybozezzTqJ2OA.jpg',
+    },
+  ];
 
-    const handleToggle = (id) => {
-        setBannerStates(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
-    };
+  return (
+    <div className="container-fluid">
+      <div className="d-flex align-items-center flex-wrap gap-3 justify-content-between px-3">
+        <h4>Banner List</h4>
+        <a href="/admin/banners/edit" className="btn py-2 btn-primary">
+          <i className="fa fa-plus-circle"></i> Create New
+        </a>
+      </div>
 
-    const banners = [
-        {
-            id: 30,
-            title: 'New offer',
-            // img: 'https://demo.alicom.app/storage/banners/zqU1WcougwODW7iTy0Vuyh9Zz9angwdkYDis2xTr.jpg',
-            img: banner
-        },
-        {
-            id: 31,
-            title: 'New Offer',
-            // img: 'https://demo.alicom.app/storage/banners/MefNES68vG27I5jwvje1JA8TBzFQFCrgTkSTGkHs.png',
-            img: banner
-        },
-    ];
+      <div className="container-fluid mt-3">
+        <div className="my-3 card">
+          <div className="card-body">
+            <div className="table-responsive">
+              <table className="table border table-responsive-lg" style={{ overflow: 'auto' }}>
+                <thead>
+                  <tr>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th className="text-center">Status</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {banners.map((banner, index) => (
+                    <tr key={banner.id} style={{ animationDelay: `${index * 0.1}s` }}>
+                      <td>
+                        <img src={banner.image} height="76" alt={`Banner ${banner.title}`} />
+                      </td>
+                      <td>{banner.title}</td>
+                      <td className="text-center">
+                        <label
+                          className="switch mb-0"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="left"
+                          title="Status Toggle"
+                        >
+                          <input type="checkbox" defaultChecked />
+                          <span className="slider round"></span>
+                        </label>
+                      </td>
 
-    return (
-            <>
-
-                <div className="d-flex align-items-center flex-wrap gap-3 justify-content-between mb-3">
-                    <h2 className="mb-5 text-3xl">Banner List</h2>
-
-
-                    <Link to="/admin/banners/edit" className="btn btn-primary mb-5 px-4 py-2">
-                        <i className="fa fa-plus-circle"></i> &nbsp;Create New
-                    </Link>
-
-                </div>
-
-                <div className="card shadow-sm">
-                    <div className="card-body pt-3 pb-4">
-                        <div className="table-responsive">
-                            <table className="table mb-0 overflow-hidden border">
-                                <thead>
-                                    <tr>
-                                        <th>Thumbnail</th>
-                                        <th>Title</th>
-                                        <th className="text-center">Status</th>
-                                        <th className="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    {banners.map((banner) => (
-                                        <tr key={banner.id}>
-                                            <td>
-                                                <img
-                                                    src={banner.img}
-                                                    alt={banner.title}
-                                                    height="76"
-                                                />
-                                            </td>
-
-                                            <td>{banner.title}</td>
-                                            <td className="text-center">
-                                                <label className="switch">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={!!bannerStates[banner.id]}
-                                                        onChange={() => handleToggle(banner.id)}
-                                                    />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex gap-2 justify-content-center">
-                                                    <Link
-                                                        to='/admin/banners/edit'
-                                                        className="btn btn-outline-primary circleIcon btn-sm"
-                                                    >
-                                                        <i className="fa-solid fa-pen"></i>
-                                                    </Link>
-
-                                                    <Link
-                                                        to='#'
-                                                        className="btn btn-outline-primary btn-sm circleIcon"
-                                                    >
-                                                        <i className="fa-solid fa-trash"></i>
-                                                    </Link>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-
+                      <td className="text-center">
+                        <div className="d-flex gap-2 justify-content-center">
+                          <Link
+                            to='/admin/banners/edit'
+                            className="btn btn-outline-info btn-sm circleIcon"
+                          >
+                            <i className="fa-solid fa-pen"></i>
+                          </Link>
+                          <Link
+                            to='#'
+                            className="btn btn-outline-danger btn-sm deleteConfirm circleIcon"
+                          >
+                            <i className="fa-solid fa-trash"></i>
+                          </Link>
                         </div>
-                    </div>
-                </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
-            </>
-    );
+        {/* <div className="my-3">Additional content if needed</div> */}
+      </div>
+    </div>
+  );
 };
 
-export default Banner;
+export default BannerList;
