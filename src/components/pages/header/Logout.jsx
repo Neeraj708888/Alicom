@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Logout = ({ onLogout, onCancel }) => {
     return (
-        // <div className="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-            // <div className="app-main"> 
-                <div className="app-main-outer">
                     <div className="app-main-inner">
                         <div className="jvectormap-tip" aria-hidden="true"></div>
                         <div className="swal2-container swal2-center swal2-backdrop-show" style={{ overflowY: 'auto' }}>
@@ -52,9 +49,6 @@ const Logout = ({ onLogout, onCancel }) => {
                             </div>
                         </div>
                     </div>
-                </div>
-            // </div>
-        // </div>
     );
 };
 

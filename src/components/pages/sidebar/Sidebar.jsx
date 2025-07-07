@@ -37,6 +37,7 @@ const Sidebar = () => {
     };
 
   return (
+    <>
     <div className= 'app-sidebar'>
       <div className="scrollbar-sidebar">
         <div className="branding-logo">
@@ -401,17 +402,18 @@ const Sidebar = () => {
             <i className="fa-solid fa-power-off" onClick={
               (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 setShowLogoutModal(true);
               }
             }></i>
           </button>
         </div>
       </div>
-
-      { showLogoutModal && (
+    </div>
+    { showLogoutModal && (
         <Logout onLogout={handleLogout} onCancel={handleCancel}/>
       )}
-    </div>
+    </>
   );
 };
 
