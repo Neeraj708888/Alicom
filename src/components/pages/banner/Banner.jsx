@@ -34,9 +34,9 @@ const BannerList = () => {
     <div className="container-fluid">
       <div className="d-flex align-items-center flex-wrap gap-3 justify-content-between px-3">
         <h4>Banner List</h4>
-        <a href="/admin/banners/edit" className="btn py-2 btn-primary">
+        <Link to="/admin/banners/edit" className="btn py-2 btn-primary">
           <i className="fa fa-plus-circle"></i> Create New
-        </a>
+        </Link>
       </div>
 
       <div className="container-fluid mt-3">
