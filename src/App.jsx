@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Headers from "./components/pages/header/Header";
 import Footer from "./components/pages/footer/Footer";
@@ -97,17 +97,25 @@ import EmployeePermissions from "./components/pages/user_management/employees/Em
 import Return from "./components/pages/order/Return";
 import Replacement from "./components/pages/order/Replacement";
 import LegalContactUs from "./components/pages/legal-pages/contact-us/LegalContactUs";
+import { useState } from "react";
 
 
 
 function App() {
+
+  // Handle Login 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
       <Routes>
-        <Route path="/admin/logout" element={<Login />} />
+        <Route path="/login" element={<Login setIsLoggedIn = {setIsLoggedIn} />} />
 
-        <Route path="/" element={<Layout />}>
-          {/* Dashboard */}
+        {/* After login, wrap everything inside Layout */}
+        { isLoggedIn ? (
+          <Route path="/" element={<Layout setIsLoggedIn = {setIsLoggedIn}/>}>
+
+           {/* Dashboard */}
           <Route index element={<Dashboard/>} />
 
           {/* Header Section */}
@@ -223,6 +231,11 @@ function App() {
 
         </Route>
 
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
+        
+         
       </Routes>
     </>
   );

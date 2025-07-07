@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '/src/assets/images/logo.png';
 import { toast } from 'react-toastify';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,11 +18,12 @@ const Login = () => {
 
     // Static login check
     if (email === 'root@alicom.com' && password === 'secret') {
-      localStorage.setItem('token', 'STATIC_AUTH_TOKEN'); // static token
-      toast.success('Login Successfully !');
-      navigate('/'); // redirect to dashboard
+      localStorage.setItem('token', 'STATIC_AUTH_TOKEN');
+      setIsLoggedIn(true); // ✅ call function
+      toast.success('Login Successfully!');
+      navigate('/'); // ✅ redirect to dashboard or layout route
     } else {
-      toast.error('Invalid credentials !');
+      toast.error('Invalid credentials!');
     }
   };
 

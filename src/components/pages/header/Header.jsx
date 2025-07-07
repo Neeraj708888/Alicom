@@ -13,7 +13,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
 
     const handleLogout = () => {
         console.log("User logged out");
-        navigate('/admin/logout');
+        navigate('/login');
     };
 
     const handleCancel = () => {

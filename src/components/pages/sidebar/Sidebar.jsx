@@ -1,13 +1,14 @@
 // src/Sidebar.jsx
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logout from '../header/Logout';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
+  const navigate = useNavigate();
+  
    const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -28,7 +29,7 @@ const Sidebar = () => {
   // Sidebar Logout Handle
   const handleLogout = () => {
         console.log("User logged out");
-        navigate('/admin/logout');
+        navigate('/login');
     };
 
     const handleCancel = () => {
